@@ -59,7 +59,6 @@ function getcontact(req, resp){
       resp.status(500).send({ message: error });
       resp.end();
     } else {
-      console.log(`end all contact ${Contacts}`)
       resp.status(202).send(Contacts);
       resp.end();
     }
@@ -85,11 +84,12 @@ function deletecontacts(req, resp){
 
 function updatecontacts(req, resp){
   console.log(req.body);
-  Contact.findOneAndUpdate(req.body.id, 
-    {
+  Contact.updateOne({_id:req.body.id}, {
+    $set:{
       FirstName: req.body.fname,
       LastName: req.body.lname,
       Phone: req.body.phone
+    }
   }, (err)=>{
     if (err) {
       resp.status(500).send({ message: error });

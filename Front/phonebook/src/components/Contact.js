@@ -14,6 +14,7 @@ export const Contact = ({ _id, FirstName, LastName, Phone, setContact }) => {
     const [state, setState] = useState('');
     const [modalEdit, setModalEdit] = useState(false);
     const nodeRef = React.useRef(modalEdit);
+    
     useEffect(() => {
       GetAllContacts().then((data) => {
         setContact(data);
@@ -22,7 +23,7 @@ export const Contact = ({ _id, FirstName, LastName, Phone, setContact }) => {
     
 
   const handleUpdate = async () => {
-      console.log(fname, lname, phone)
+      console.log(id, fname, lname, phone)
     await fetch("http://localhost:4000/api/upcontacts", {
       method: "POST",
       headers: {
@@ -32,12 +33,13 @@ export const Contact = ({ _id, FirstName, LastName, Phone, setContact }) => {
       body: JSON.stringify({ id, fname, lname, phone }),
     })
       .then((response) => {
-        console.log("recuperando contactos");
+        //console.log("recuperando contactos");
         return response.json();
       })
       .then((data) => {
+        handleReset();
         setState(data);
-        console.log(data);
+        setModalEdit(false);
       });
   };
 
@@ -51,7 +53,7 @@ export const Contact = ({ _id, FirstName, LastName, Phone, setContact }) => {
       body: JSON.stringify({ id: _id }),
     })
       .then((response) => {
-        console.log("recuperando contactos");
+        //console.log("recuperando contactos");
         return response.json();
       })
       .then((data) => {
