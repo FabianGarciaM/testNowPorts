@@ -61,12 +61,12 @@ export const Login = ({setToken}) => {
         </div>
       </form>
       <hr></hr>
-      <button type="button" className="btn btn-primary">
+      {/* <button type="button" className="btn btn-primary">
         password
       </button>
       <button type="button" className="btn btn-primary">
         NewUser
-      </button>
+      </button> */}
     </>
   );
 }

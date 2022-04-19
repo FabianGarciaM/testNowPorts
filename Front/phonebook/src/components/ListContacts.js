@@ -3,7 +3,7 @@ import { Contact } from './Contact';
 
 export const ListContacts = ({ contacts, setContact }) => {
 
-    if(contacts !== undefined || contacts.lenght !== 0){
+    if(!contacts){
         return (
           <table className="table">
             <thead>
